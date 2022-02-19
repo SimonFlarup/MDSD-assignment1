@@ -1,4 +1,4 @@
-package main.metamodel;
+package dk.sdu.metamodel;
 
 import java.util.ArrayList;
 import java.util.List;

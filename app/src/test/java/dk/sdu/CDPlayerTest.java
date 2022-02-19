@@ -1,13 +1,11 @@
-package test;
+package dk.sdu;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import main.MachineInterpreter;
-import main.StateMachine;
-import main.metamodel.Machine;
+import dk.sdu.metamodel.Machine;
 
 public class CDPlayerTest {
 	

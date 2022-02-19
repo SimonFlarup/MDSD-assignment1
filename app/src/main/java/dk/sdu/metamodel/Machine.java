@@ -1,4 +1,4 @@
-package main.metamodel;
+package dk.sdu.metamodel;
 
 import java.util.List;
 import java.util.Map;

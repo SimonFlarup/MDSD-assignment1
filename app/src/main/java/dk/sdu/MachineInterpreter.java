@@ -1,12 +1,11 @@
-package main;
+package dk.sdu;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
-import main.metamodel.Machine;
-import main.metamodel.State;
-import main.metamodel.Transition;
+import dk.sdu.metamodel.Machine;
+import dk.sdu.metamodel.State;
+import dk.sdu.metamodel.Transition;
 
 public class MachineInterpreter {
 

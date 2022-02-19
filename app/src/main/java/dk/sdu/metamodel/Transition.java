@@ -1,7 +1,6 @@
-package main.metamodel;
+package dk.sdu.metamodel;
 
 import java.util.Map;
-import java.util.Set;
 
 public class Transition {
 

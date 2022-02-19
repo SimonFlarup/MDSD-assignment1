@@ -1,18 +1,17 @@
-package test;
+package dk.sdu;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import main.StateMachine;
-import main.metamodel.Machine;
-import main.metamodel.State;
-import main.metamodel.Transition;
+import java.util.List;
+
+import dk.sdu.metamodel.Machine;
+import dk.sdu.metamodel.State;
+import dk.sdu.metamodel.Transition;
 
 public class MachineStructureTest {
 	private StateMachine stateMachine;

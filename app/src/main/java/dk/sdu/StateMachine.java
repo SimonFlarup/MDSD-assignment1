@@ -1,13 +1,13 @@
-package main;
+package dk.sdu;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import main.metamodel.Machine;
-import main.metamodel.State;
-import main.metamodel.Transition;
+import dk.sdu.metamodel.Machine;
+import dk.sdu.metamodel.State;
+import dk.sdu.metamodel.Transition;
 
 public class StateMachine {
 
