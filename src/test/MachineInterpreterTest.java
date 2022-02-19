@@ -282,4 +282,82 @@ public class MachineInterpreterTest {
 		interpreter.processEvent("GO");
 		assertEquals(1, interpreter.getInteger("var"));
 	}
+
+	/***
+	 * Additional test added for order of processing conditional transitions and operations
+	 * Expected behaviour is for the operation to only take place if the condition is true.
+	 */
+	@Test
+	public void transitionConditionalOperations() {
+		Machine m = stateMachine.
+				integer("var").
+				state("state 1").initial().
+				when("GO").to("state 2").set("var", 42).ifEquals("var", 999).
+				state("state 2").
+				build();
+		interpreter.run(m);
+		interpreter.processEvent("GO");
+		assertEquals(0, interpreter.getInteger("var"));
+		assertEquals("state 1", interpreter.getCurrentState().getName());
+	}
+
+	/***
+	 * Additional test added for validating multiple transitions with same name
+	 * Expected behaviour is for all transitions to be evaluated
+	 */
+	@Test
+	public void multipleTransitionWithSameName() {
+		Machine m = stateMachine.
+				integer("var").
+				state("state 1").initial().
+				when("GO").to("state 2").set("var", 42).ifEquals("var", 999).
+				when("GO").to("state 3").ifEquals("var", 0).
+				state("state 2").
+				state("state 3").
+				build();
+		interpreter.run(m);
+		interpreter.processEvent("GO");
+		assertEquals(0, interpreter.getInteger("var"));
+		assertEquals("state 3", interpreter.getCurrentState().getName());
+	}
+
+	/***
+	 * Additional test added for correcting the incremental operation test
+	 * Expected behavior is for the increment to increment by 1 every time.
+	 */
+	@Test
+	public void integerIncrementedCorrected() {
+		Machine m = stateMachine.
+				integer("var").
+				state("state 1").initial().
+				when("GO").to("state 2").increment("var").
+				state("state 2").
+				when("GO").to("state 1").increment("var").
+				build();
+		interpreter.run(m);
+		interpreter.processEvent("GO");
+		interpreter.processEvent("GO");
+		assertEquals(2, interpreter.getInteger("var"));
+		assertEquals("state 1", interpreter.getCurrentState().getName());
+	}
+
+	/***
+	 * Additional test added for correcting the decremental operation test
+	 * Expected behavior is for the increment to decrement by 1 every time.
+	 */
+	@Test
+	public void integerDecrementedCorrected() {
+		Machine m = stateMachine.
+				integer("var").
+				state("state 1").initial().
+				when("GO").to("state 2").set("var", 5).
+				state("state 2").
+				when("GO").to("state 1").decrement("var").
+				build();
+		interpreter.run(m);
+		interpreter.processEvent("GO");
+		interpreter.processEvent("GO");
+		assertEquals(4, interpreter.getInteger("var"));
+		assertEquals("state 1", interpreter.getCurrentState().getName());
+	}
 }

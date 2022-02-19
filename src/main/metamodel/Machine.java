@@ -1,32 +1,42 @@
 package main.metamodel;
 
 import java.util.List;
+import java.util.Map;
 
 public class Machine {
 
+	private List<State> states;
+	private Map<String, Integer> integers;
+	private State initialState;
+
+	public Machine(List<State> states, State initialState, Map<String, Integer> integers) {
+		this.states = states;
+		this.initialState = initialState;
+		this.integers = integers;
+	}
+
 	public List<State> getStates() {
-		// TODO Auto-generated method stub
-		return null;
+		return states;
 	}
 
 	public State getInitialState() {
-		// TODO Auto-generated method stub
-		return null;
+		return initialState;
 	}
 
 	public State getState(String string) {
-		// TODO Auto-generated method stub
-		return null;
+		return states.stream().filter(state -> string.equals(state.getName())).findFirst().get();
 	}
 
 	public int numberOfIntegers() {
-		// TODO Auto-generated method stub
-		return 0;
+		return integers.size();
 	}
 
 	public boolean hasInteger(String string) {
-		// TODO Auto-generated method stub
-		return false;
+		return integers.containsKey(string);
+	}
+
+	public Map<String, Integer> getIntegers() {
+		return this.integers;
 	}
 
 }
